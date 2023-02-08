@@ -1,0 +1,19 @@
+==== Tema 2 ====
+Nume: Iordache Madalina Gabriela
+Grupa: 333CA
+================
+
+==== Citirea comenzilor ====
+Pentru citirea comenzilor am deschis P threaduri, fiecare thread citeste din fisier toate liniile, insa le filtreaza
+pe cele care ii sunt asignate, thread-ul i urmand sa citeasca liniile i, i+P, i+2P,...,i+kP.
+Cele P threaduri sunt spawnate in main, iar apoi sunt asteptate cu join(). La citirea comenzilor, populam clasa
+care se va ocupa de citirea produselor comenzii respective si o punem intr-o lista sincronizata
+pentru a fi rulata pe threadpool dupa citirea tuturor comenzilor.
+Pentru a contoriza cate produse mai avem de citit am folosit un hashmap pe care l-am protejat cu un mutex.
+
+==== Citirea produselor ====
+Pentru citirea produselor am creat P task-uri pentru fiecare comanda. Aceste task-uri le-am rulat pe threadpool, limitat
+la P threaduri. Products Reader citeste prin aceiasi metoda ca mai sus, apoi scrie in fisier starea produsului,
+si decrementeaza contorul produselor comenzii respective. Cand contorul ajunge 0, scriem in fisier starea comenzii.
+
+
